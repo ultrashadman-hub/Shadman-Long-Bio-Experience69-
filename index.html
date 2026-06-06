@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>𓊈𝑽꯭𝑰꯭𝑷ࠡ𓊉BIO CHANGER | 𝗟𝗘𝗔𝗗𝗘𝗥 𝗦𝗛𝗔𝗗𝗠𝗔𝗡</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#05070f;
+  --card:#0d1117;
+  --card2:#111822;
+  --border:#1e2d40;
+  --red:#e8293a;
+  --red2:#ff4d5e;
+  --cyan:#00d4ff;
+  --gold:#ffd700;
+  --text:#e2e8f0;
+  --muted:#64748b;
+  --glow:0 0 20px rgba(232,41,58,0.4);
+  --glow2:0 0 20px rgba(0,212,255,0.3);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Exo 2',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%,rgba(232,41,58,0.08),transparent),
+    radial-gradient(ellipse 60% 40% at 80% 80%,rgba(0,212,255,0.05),transparent);
+}
+
+/* ── Animated grid bg ── */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:
+    linear-gradient(rgba(30,45,64,0.3) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(30,45,64,0.3) 1px,transparent 1px);
+  background-size:40px 40px;
+  z-index:0;pointer-events:none;
+  animation:gridMove 20s linear infinite;
+}
+@keyframes gridMove{from{background-position:0 0}to{background-position:40px 40px}}
+
+.container{max-width:780px;margin:0 auto;padding:20px 16px;position:relative;z-index:1;}
+
+/* ── Header ── */
+.header{text-align:center;padding:30px 0 20px;}
+.header-logo{
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(22px,5vw,38px);
+  font-weight:900;
+  background:linear-gradient(135deg,var(--red),var(--red2),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  letter-spacing:3px;
+  text-shadow:none;
+  animation:pulse 3s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{filter:drop-shadow(0 0 8px rgba(232,41,58,0.6))}50%{filter:drop-shadow(0 0 20px rgba(232,41,58,0.9))}}
+.header-sub{
+  color:var(--cyan);
+  font-size:12px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  margin-top:6px;
+  font-weight:300;
+}
+.header-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,rgba(232,41,58,0.15),rgba(255,77,94,0.1));
+  border:1px solid rgba(232,41,58,0.3);
+  border-radius:20px;padding:4px 14px;
+  font-size:11px;color:var(--red2);
+  margin-top:10px;letter-spacing:1px;
+  font-family:'Orbitron',sans-serif;
+}
+
+/* ── Cards ── */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:22px;
+  margin-bottom:20px;
+  position:relative;
+  overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--red),var(--red2),transparent);
+}
+.card-title{
+  display:flex;align-items:center;gap:10px;
+  font-family:'Orbitron',sans-serif;
+  font-size:14px;font-weight:700;
+  color:var(--text);letter-spacing:2px;
+  margin-bottom:18px;
+  text-transform:uppercase;
+}
+.card-title .icon{
+  width:36px;height:36px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,var(--red),var(--red2));
+  font-size:18px;flex-shrink:0;
+  box-shadow:var(--glow);
+}
+.card-badge{
+  margin-left:auto;
+  background:linear-gradient(135deg,var(--red),var(--red2));
+  color:#fff;font-size:10px;
+  font-family:'Orbitron',sans-serif;
+  padding:3px 10px;border-radius:20px;
+  letter-spacing:1px;
+}
+
+/* ── Bio Textarea ── */
+.bio-wrap{position:relative;}
+textarea#bioInput{
+  width:100%;min-height:90px;
+  background:#060b14;
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:var(--text);
+  font-family:'Exo 2',monospace;
+  font-size:13px;
+  padding:12px 14px;
+  resize:vertical;
+  outline:none;
+  transition:border-color .3s;
+  line-height:1.6;
+}
+textarea#bioInput:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(232,41,58,0.1);}
+.bio-stats{
+  display:flex;justify-content:flex-end;gap:14px;
+  font-size:11px;color:var(--muted);
+  margin-top:6px;
+}
+.bio-stats span{color:var(--cyan);}
+
+/* ── Color Picker ── */
+.section-label{
+  font-size:11px;color:var(--muted);
+  text-transform:uppercase;letter-spacing:2px;
+  margin:14px 0 8px;
+}
+.color-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:4px;}
+.color-btn{
+  width:30px;height:30px;border-radius:50%;
+  border:2px solid transparent;
+  cursor:pointer;transition:all .2s;
+  position:relative;
+}
+.color-btn:hover{transform:scale(1.2);border-color:#fff;}
+.color-btn.active{border-color:#fff;transform:scale(1.15);box-shadow:0 0 10px currentColor;}
+.color-btn[data-color="#111111"]{border-color:#444;}
+
+/* ── Decoration Buttons ── */
+.deco-grid{display:flex;flex-wrap:wrap;gap:7px;}
+.deco-btn{
+  background:#0d1825;
+  border:1px solid var(--border);
+  color:var(--text);
+  font-size:12px;
+  padding:6px 11px;
+  border-radius:8px;
+  cursor:pointer;
+  transition:all .25s;
+  display:flex;align-items:center;gap:5px;
+  white-space:nowrap;
+}
+.deco-btn:hover{
+  border-color:var(--cyan);
+  color:var(--cyan);
+  background:rgba(0,212,255,0.05);
+  transform:translateY(-1px);
+}
+.deco-btn .deco-preview{
+  font-size:11px;
+  color:var(--gold);
+  opacity:0.8;
+  max-width:80px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+/* ── Format Buttons ── */
+.format-row{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:6px;}
+.fmt-btn{
+  background:#0d1825;
+  border:1px solid var(--border);
+  color:var(--text);
+  font-size:12px;padding:6px 14px;
+  border-radius:8px;cursor:pointer;
+  transition:all .2s;
+  font-family:'Exo 2',sans-serif;
+}
+.fmt-btn:hover{border-color:var(--red);color:var(--red);background:rgba(232,41,58,0.05);}
+.fmt-btn.active{border-color:var(--red);color:var(--red);background:rgba(232,41,58,0.1);}
+
+/* ── Live Preview ── */
+#livePreview{
+  background:#060b14;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:16px;
+  min-height:80px;
+  font-family:'Exo 2',sans-serif;
+  font-size:14px;
+  line-height:1.7;
+  word-break:break-word;
+}
+.preview-placeholder{color:var(--muted);font-style:italic;font-size:13px;}
+
+/* ── Auth Tabs ── */
+.auth-tabs{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:8px;margin-bottom:20px;
+}
+.auth-tab{
+  background:#060b14;
+  border:1px solid var(--border);
+  color:var(--muted);
+  border-radius:10px;
+  padding:12px 8px;
+  cursor:pointer;
+  transition:all .25s;
+  display:flex;flex-direction:column;
+  align-items:center;gap:5px;
+  font-size:12px;font-weight:600;
+  letter-spacing:0.5px;
+}
+.auth-tab .tab-icon{font-size:20px;}
+.auth-tab:hover{border-color:var(--red);color:var(--text);}
+.auth-tab.active{
+  border-color:var(--red);
+  background:linear-gradient(135deg,rgba(232,41,58,0.12),rgba(255,77,94,0.06));
+  color:var(--text);
+  box-shadow:var(--glow);
+}
+.auth-panel{display:none;}
+.auth-panel.active{display:block;}
+
+/* ── Inputs ── */
+.input-group{margin-bottom:14px;}
+.input-label{
+  font-size:11px;color:var(--muted);
+  text-transform:uppercase;letter-spacing:1.5px;
+  margin-bottom:6px;display:block;
+}
+.input-wrap{position:relative;}
+input[type=text],input[type=password]{
+  width:100%;
+  background:#060b14;
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:var(--text);
+  font-family:'Exo 2',sans-serif;
+  font-size:13px;
+  padding:11px 14px;
+  outline:none;
+  transition:border-color .3s;
+}
+input:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(232,41,58,0.1);}
+.show-pwd{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:var(--muted);
+  cursor:pointer;font-size:16px;padding:4px;
+}
+
+/* ── Buttons ── */
+.btn-primary{
+  width:100%;
+  background:linear-gradient(135deg,var(--red),var(--red2));
+  color:#fff;
+  border:none;border-radius:12px;
+  padding:14px;
+  font-family:'Orbitron',sans-serif;
+  font-size:13px;font-weight:700;
+  letter-spacing:2px;
+  cursor:pointer;
+  transition:all .3s;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  box-shadow:0 4px 20px rgba(232,41,58,0.35);
+}
+.btn-primary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 30px rgba(232,41,58,0.5);
+  background:linear-gradient(135deg,var(--red2),#ff6b7a);
+}
+.btn-primary:active{transform:translateY(0);}
+.btn-primary:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.btn-secondary{
+  width:100%;
+  background:transparent;
+  color:var(--cyan);
+  border:1px solid var(--cyan);
+  border-radius:12px;
+  padding:11px;
+  font-family:'Exo 2',sans-serif;
+  font-size:12px;font-weight:600;
+  cursor:pointer;
+  transition:all .3s;
+  margin-bottom:12px;
+}
+.btn-secondary:hover{background:rgba(0,212,255,0.08);box-shadow:var(--glow2);}
+
+/* ── Status ── */
+.status-box{
+  border-radius:10px;
+  padding:12px 16px;
+  font-size:13px;
+  margin-top:14px;
+  display:none;
+  animation:fadeIn .3s ease;
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.status-box.success{
+  background:rgba(16,185,129,0.1);
+  border:1px solid rgba(16,185,129,0.3);
+  color:#34d399;
+}
+.status-box.error{
+  background:rgba(232,41,58,0.1);
+  border:1px solid rgba(232,41,58,0.3);
+  color:var(--red2);
+}
+.status-box.info{
+  background:rgba(0,212,255,0.08);
+  border:1px solid rgba(0,212,255,0.25);
+  color:var(--cyan);
+}
+
+/* ── Token result ── */
+.token-result{
+  background:#060b14;
+  border:1px solid rgba(0,212,255,0.2);
+  border-radius:10px;
+  padding:10px 14px;
+  font-family:monospace;
+  font-size:11px;
+  color:var(--cyan);
+  word-break:break-all;
+  margin-top:10px;
+  display:none;
+  position:relative;
+}
+.copy-btn{
+  position:absolute;right:8px;top:8px;
+  background:rgba(0,212,255,0.15);
+  border:1px solid rgba(0,212,255,0.3);
+  color:var(--cyan);
+  border-radius:6px;
+  padding:3px 8px;
+  font-size:10px;
+  cursor:pointer;
+  transition:all .2s;
+}
+.copy-btn:hover{background:rgba(0,212,255,0.25);}
+
+/* ── Spinner ── */
+.spinner{
+  width:18px;height:18px;border:2px solid rgba(255,255,255,0.3);
+  border-top-color:#fff;border-radius:50%;
+  animation:spin .7s linear infinite;display:none;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── Footer ── */
+.footer{
+  text-align:center;
+  padding:24px 16px;
+  font-size:12px;
+  color:var(--muted);
+  border-top:1px solid var(--border);
+  margin-top:10px;
+}
+.footer strong{color:var(--gold);font-family:'Orbitron',sans-serif;letter-spacing:1px;}
+.footer .socials{display:flex;justify-content:center;gap:14px;margin-top:8px;flex-wrap:wrap;}
+.footer .socials a{color:var(--cyan);text-decoration:none;font-size:11px;letter-spacing:1px;}
+.footer .socials a:hover{color:#fff;}
+
+/* ── Glow divider ── */
+.divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--border),transparent);
+  margin:14px 0;
+}
+
+/* ── Responsive ── */
+@media(max-width:480px){
+  .auth-tabs{grid-template-columns:1fr 1fr;}
+  .deco-btn{font-size:11px;padding:5px 9px;}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ═══ HEADER ═══ -->
+  <div class="header">
+    <div class="header-logo">𝗟𝗘𝗔𝗗𝗘𝗥 𝗦𝗛𝗔𝗗𝗠𝗔𝗡 𝐁𝐈𝐎🔥</div>
+    <div class="header-sub">𝗔𝗗𝗩𝗔𝗡𝗖𝗘𝗗 𝗙𝗙 𝗟𝗢𝗡𝗚 𝗕𝗜𝗢 𝗧𝗢𝗢𝗟 𝗠𝗔𝗗𝗘 𝗕𝗬 𝗦𝗛𝗔𝗗𝗠𝗔𝗡 𝗖𝗢𝗗𝗘𝗥🔥</div>
+    <div class="header-badge">✦ 𝗟𝗘𝗔𝗗𝗘𝗥 𝗦𝗛𝗔𝗗𝗠𝗔𝗡 𝐁𝐈𝐎🔥 ✦</div>
+  </div>
+
+  <!-- ═══ BIO EDITOR ═══ -->
+  <div class="card">
+    <div class="card-title">
+      <div class="icon">✏️</div>
+      𝗟𝗘𝗔𝗗𝗘𝗥 𝗦𝗛𝗔𝗗𝗠𝗔𝗡 𝐁𝐈𝐎🔥
+      <span class="card-badge">𝗔𝗗𝗩𝗔𝗡𝗖𝗘𝗗</span>
+    </div>
+
+    <!-- Format tags -->
+    <div class="section-label">⚡ Quick Tags</div>
+    <div class="format-row">
+      <button class="fmt-btn" onclick="insertTag('[c]')" title="Center">[c] Center</button>
+      <button class="fmt-btn" onclick="insertTag('[b]')" title="Bold">[b] Bold</button>
+      <button class="fmt-btn" onclick="insertTag('\n')" title="New Line">↵ New Line</button>
+      <button class="fmt-btn" onclick="clearBio()">🗑 Clear</button>
+    </div>
+
+    <!-- Color Picker -->
+    <div class="section-label">🎨 Colors</div>
+    <div class="color-grid" id="colorGrid">
+      <!-- Filled by JS -->
+    </div>
+
+    <!-- Decorations -->
+    <div class="section-label">🌸 Decorations — Flowers</div>
+    <div class="deco-grid" id="decoFlowers"></div>
+
+    <div class="section-label" style="margin-top:12px">📦 Box Frames</div>
+    <div class="deco-grid" id="decoBoxes"></div>
+
+    <div class="section-label" style="margin-top:12px">➖ Lines & Dividers</div>
+    <div class="deco-grid" id="decoLines"></div>
+
+    <div class="section-label" style="margin-top:12px">⭐ Stars & Symbols</div>
+    <div class="deco-grid" id="decoStars"></div>
+
+    <div class="section-label" style="margin-top:12px">🔥 Fire & Special</div>
+    <div class="deco-grid" id="decoSpecial"></div>
+
+    <div class="section-label" style="margin-top:12px">🏹 Arrows & Brackets</div>
+    <div class="deco-grid" id="decoArrows"></div>
+
+    <div class="divider"></div>
+
+    <!-- Bio Textarea -->
+    <div class="section-label">📝 Your Bio Code</div>
+    <div class="bio-wrap">
+      <textarea id="bioInput" placeholder="[c][b][FF4444]Your Bio Here" oninput="updatePreview();updateStats();"></textarea>
+    </div>
+    <div class="bio-stats">
+      <div><span id="charCount">0</span>/250 characters</div>
+      <div><span id="lineCount">1</span>/3 lines</div>
+    </div>
+
+    <!-- Live Preview -->
+    <div class="section-label" style="margin-top:14px">👁 Live Preview (Exactly like in-game)</div>
+    <div id="livePreview"><span class="preview-placeholder">Your bio will appear here with colors...</span></div>
+  </div>
+
+  <!-- ═══🔐 𝗔𝗨𝗧𝗛𝗘𝗡𝗧𝗜𝗖𝗔𝗧𝗜𝗢𝗡 🔐═══ -->
+  <div class="card">
+    <div class="card-title">
+      <div class="icon">🔑</div>
+      🔐 𝗔𝗨𝗧𝗛𝗘𝗡𝗧𝗜𝗖𝗔𝗧𝗜𝗢𝗡 🔐
+      <span class="card-badge">4 METHODS</span>
+    </div>
+
+    <div class="auth-tabs">
+      <div class="auth-tab active" onclick="switchAuth(0)">
+        <span class="tab-icon">🗝️</span>
+        𝗝𝗪𝗧 𝗧𝗢𝗞𝗘𝗡
+      </div>
+      <div class="auth-tab" onclick="switchAuth(1)">
+        <span class="tab-icon">👤</span>
+        𝗨𝗜𝗗 & 𝗣𝗔𝗦𝗦𝗪𝗢𝗥𝗗
+      </div>
+      <div class="auth-tab" onclick="switchAuth(2)">
+        <span class="tab-icon">🔓</span>
+        𝗔𝗖𝗖𝗘𝗦𝗦 𝗧𝗢𝗞𝗘𝗡
+      </div>
+      <div class="auth-tab" onclick="switchAuth(3)">
+        <span class="tab-icon">🔄</span>
+        𝗘𝗔𝗧 𝗧𝗢𝗞𝗘𝗡
+      </div>
+    </div>
+
+    <!-- ── Panel 0: JWT ── -->
+    <div class="auth-panel active" id="panel0">
+      <div class="input-group">
+        <label class="input-label">𝗝𝗪𝗧 𝗧𝗢𝗞𝗘𝗡</label>
+        <input type="text" id="jwt_token" placeholder="Paste your JWT token here..."/>
+      </div>
+      <button class="btn-primary" onclick="updateBioJWT()" id="btnJWT">
+        <span>𝗨𝗣𝗗𝗔𝗧𝗘 𝗕𝗜𝗢 𝗪𝗜𝗧𝗛 𝗝𝗪𝗧🔥</span>
+        <div class="spinner" id="spinJWT"></div>
+      </button>
+      <div class="status-box" id="statusJWT"></div>
+    </div>
+
+    <!-- ── Panel 1: UID + Password ── -->
+    <div class="auth-panel" id="panel1">
+      <div class="input-group">
+        <label class="input-label">𝗣𝗟𝗔𝗬𝗘𝗥 𝗨𝗜𝗗</label>
+        <input type="text" id="uid_input" placeholder="Enter your Free Fire UID"/>
+      </div>
+      <div class="input-group">
+        <label class="input-label">𝗣𝗔𝗦𝗦𝗪𝗢𝗥𝗗</label>
+        <div class="input-wrap">
+          <input type="password" id="pwd_input" placeholder="Enter your password"/>
+          <button class="show-pwd" onclick="togglePwd('pwd_input',this)">👁</button>
+        </div>
+      </div>
+      <button class="btn-secondary" onclick="getJWTFromUID()" id="btnGetJWT">
+        ⚡ 𝗚𝗘𝗧 𝗝𝗪𝗧 𝗧𝗢𝗞𝗘𝗡 𝗙𝗜𝗥𝗦𝗧
+      </button>
+      <div class="token-result" id="resultJWT">
+        <button class="copy-btn" onclick="copyToken('resultJWT')">𝗖𝗢𝗣𝗬</button>
+        <span id="resultJWTText"></span>
+      </div>
+      <button class="btn-primary" onclick="updateBioUID()" id="btnUID">
+        <span>𝗨𝗣𝗗𝗔𝗧𝗘 𝗕𝗜𝗢 𝗪𝗜𝗧𝗛 𝗨𝗜𝗗 🔥</span>
+        <div class="spinner" id="spinUID"></div>
+      </button>
+      <div class="status-box" id="statusUID"></div>
+    </div>
+
+    <!-- ── Panel 2: Access Token ── -->
+    <div class="auth-panel" id="panel2">
+      <div class="input-group">
+        <label class="input-label">𝗔𝗖𝗖𝗘𝗦𝗦 𝗧𝗢𝗞𝗘𝗡🔥</label>
+        <input type="text" id="access_token" placeholder="Paste your Access token here..."/>
+      </div>
+      <button class="btn-primary" onclick="updateBioAccess()" id="btnAccess">
+        <span>𝗨𝗣𝗗𝗔𝗧𝗘 𝗕𝗜𝗢 𝗪𝗜𝗧𝗛 𝗔𝗖𝗖𝗘𝗦𝗦 𝗧𝗢𝗞𝗘𝗡🔥</span>
+        <div class="spinner" id="spinAccess"></div>
+      </button>
+      <div class="status-box" id="statusAccess"></div>
+    </div>
+
+    <!-- ── Panel 3: EAT Token ── -->
+    <div class="auth-panel" id="panel3">
+      <div class="input-group">
+        <label class="input-label">𝗘𝗔𝗧 𝗧𝗢𝗞𝗘𝗡</label>
+        <input type="text" id="eat_token" placeholder="Paste your EAT token here..."/>
+      </div>
+      <button class="btn-secondary" onclick="convertEAT()" id="btnConvert">
+        🔄 𝗖𝗢𝗡𝗩𝗘𝗥𝗧 𝗘𝗔𝗧 → 𝗔𝗖𝗖𝗘𝗦𝗦 𝗧𝗢𝗞𝗘𝗡
+      </button>
+      <div class="token-result" id="resultAccess">
+        <button class="copy-btn" onclick="copyToken('resultAccess')">COPY</button>
+        <span id="resultAccessText"></span>
+      </div>
+      <button class="btn-primary" onclick="updateBioEAT()" id="btnEAT">
+        <span>𝗨𝗣𝗗𝗔𝗧𝗘 𝗕𝗜𝗢 𝗪𝗜𝗧𝗛 𝗘𝗔𝗧 𝗧𝗢𝗞𝗘𝗡🔥</span>
+        <div class="spinner" id="spinEAT"></div>
+      </button>
+      <div class="status-box" id="statusEAT"></div>
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="footer">
+    🔥 Developed by <strong>𝗟𝗘𝗔𝗗𝗘𝗥 𝗦𝗛𝗔𝗗𝗠𝗔𝗡</strong><br/>
+    Free Fire Bio Changer &bull; Advanced Formatting &bull; 4 Auth Methods
+    <div class="socials">
+      <a href="#">𝗟𝗘𝗔𝗗𝗘𝗥 𝗦𝗛𝗔𝗗𝗠𝗔𝗡</a>
+      <a href="#">Free Fire Bio Tool</a>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<script>
+// ═══════════════════════════════════════════
+//  COLORS
+// ═══════════════════════════════════════════
+const COLORS = [
+  {hex:"#FFFFFF",code:"FFFFFF",name:"White"},
+  {hex:"#FF3333",code:"FF3333",name:"Red"},
+  {hex:"#00BFFF",code:"00BFFF",name:"Cyan"},
+  {hex:"#33FF88",code:"33FF88",name:"Green"},
+  {hex:"#FFD700",code:"FFD700",name:"Gold"},
+  {hex:"#BB44FF",code:"BB44FF",name:"Purple"},
+  {hex:"#FF8C00",code:"FF8C00",name:"Orange"},
+  {hex:"#FF69B4",code:"FF69B4",name:"Pink"},
+  {hex:"#00FFFF",code:"00FFFF",name:"Aqua"},
+  {hex:"#FF4500",code:"FF4500",name:"OrangeRed"},
+  {hex:"#ADFF2F",code:"ADFF2F",name:"Lime"},
+  {hex:"#1E90FF",code:"1E90FF",name:"Blue"},
+  {hex:"#FF1493",code:"FF1493",name:"DeepPink"},
+  {hex:"#00FA9A",code:"00FA9A",name:"Spring"},
+  {hex:"#FFA07A",code:"FFA07A",name:"Salmon"},
+  {hex:"#7FFFD4",code:"7FFFD4",name:"Aquamarine"},
+];
+
+const cg = document.getElementById('colorGrid');
+COLORS.forEach(c=>{
+  const b = document.createElement('button');
+  b.className='color-btn';
+  b.title=c.name;
+  b.style.background=c.hex;
+  b.onclick=()=>insertColor(c.code);
+  cg.appendChild(b);
+});
+
+function insertColor(code){
+  insertTag(`[${code}]`);
+}
+
+// ═══════════════════════════════════════════
+//  DECORATIONS
+// ═══════════════════════════════════════════
+const DECO = {
+  flowers:[
+    {label:"🌸 Sakura",  val:"🌸"},
+    {label:"🌺 Hibiscus",val:"🌺"},
+    {label:"🌹 Rose",    val:"🌹"},
+    {label:"🌷 Tulip",   val:"🌷"},
+    {label:"🌼 Daisy",   val:"🌼"},
+    {label:"🌻 Sunflower",val:"🌻"},
+    {label:"💮 White",   val:"💮"},
+    {label:"🏵 Rosette", val:"🏵"},
+    {label:"✿ Flower",  val:"✿"},
+    {label:"❀ Bloom",   val:"❀"},
+    {label:"✾ Floret",  val:"✾"},
+    {label:"❁ Star Flower",val:"❁"},
+    {label:"꧁ꦿ꧂",      val:"꧁ꦿ꧂"},
+  ],
+  boxes:[
+    {label:"┌─ Box Top",        val:"┌──────┐"},
+    {label:"│  Side",           val:"│  "},
+    {label:"└─ Box Bot",        val:"└──────┘"},
+    {label:"╔═ Double Top",     val:"╔══════╗"},
+    {label:"║  D-Side",         val:"║  "},
+    {label:"╚═ Double Bot",     val:"╚══════╝"},
+    {label:"▓▓ Thick Box",      val:"▓▓▓▓▓▓▓▓"},
+    {label:"░░ Light Fill",     val:"░░░░░░░░"},
+    {label:"▒▒ Mid Fill",       val:"▒▒▒▒▒▒▒▒"},
+    {label:"【 】Bracket Box",  val:"【  】"},
+    {label:"『 』JP Box",       val:"『  』"},
+    {label:"「 」JP Bracket",   val:"「  」"},
+    {label:"❲ ❳ Fancy",        val:"❲  ❳"},
+  ],
+  lines:[
+    {label:"─── Thin Line",      val:"──────────"},
+    {label:"═══ Double Line",    val:"══════════"},
+    {label:"━━━ Bold Line",      val:"━━━━━━━━━━"},
+    {label:"· · · Dotted",       val:"··········"},
+    {label:"- - - Dashed",       val:"----------"},
+    {label:"～～ Wave",          val:"~~~~~~~~~~"},
+    {label:"≈≈≈ Wave2",         val:"≈≈≈≈≈≈≈≈≈≈"},
+    {label:"• • Bullet Line",    val:"•·•·•·•·•·"},
+    {label:"⁻⁻⁻ Sup Line",      val:"⁻⁻⁻⁻⁻⁻⁻⁻⁻⁻"},
+    {label:"✦ Star Line",        val:"✦·✦·✦·✦·✦"},
+    {label:"♦ Diamond Line",     val:"♦·♦·♦·♦·♦"},
+    {label:"⎯⎯ Overline",       val:"⎯⎯⎯⎯⎯⎯⎯⎯⎯"},
+  ],
+  stars:[
+    {label:"★ Solid Star",     val:"★"},
+    {label:"☆ Empty Star",     val:"☆"},
+    {label:"✦ 4 Star",         val:"✦"},
+    {label:"✧ 4 Star Open",    val:"✧"},
+    {label:"✩ Star2",          val:"✩"},
+    {label:"✪ Circle Star",    val:"✪"},
+    {label:"✫ Star3",          val:"✫"},
+    {label:"✬ Star4",          val:"✬"},
+    {label:"✭ Star5",          val:"✭"},
+    {label:"💫 Dizzy",         val:"💫"},
+    {label:"⭐ Yellow Star",   val:"⭐"},
+    {label:"🌟 Glowing",       val:"🌟"},
+    {label:"✨ Sparkles",      val:"✨"},
+    {label:"💥 Explosion",     val:"💥"},
+    {label:"⚡ Lightning",     val:"⚡"},
+    {label:"♛ Crown",          val:"♛"},
+    {label:"♜ Rook",           val:"♜"},
+    {label:"◆ Diamond",        val:"◆"},
+    {label:"◇ D-Open",         val:"◇"},
+    {label:"● Circle",         val:"●"},
+  ],
+  special:[
+    {label:"🔥 Fire",           val:"🔥"},
+    {label:"💀 Skull",          val:"💀"},
+    {label:"⚔ Swords",         val:"⚔"},
+    {label:"🛡 Shield",         val:"🛡"},
+    {label:"👑 Crown",          val:"👑"},
+    {label:"🎯 Target",         val:"🎯"},
+    {label:"💎 Diamond",        val:"💎"},
+    {label:"⚡ Thunder",        val:"⚡"},
+    {label:"🌊 Wave",           val:"🌊"},
+    {label:"🌙 Moon",           val:"🌙"},
+    {label:"☀ Sun",             val:"☀"},
+    {label:"❄ Snow",            val:"❄"},
+    {label:"꧁ Start Deco",      val:"꧁"},
+    {label:"꧂ End Deco",        val:"꧂"},
+    {label:"『 JP Open",        val:"『"},
+    {label:"』JP Close",        val:"』"},
+    {label:"ꈍᴗꈍ Cute",        val:"ꈍᴗꈍ"},
+    {label:"( ˘▽˘)っ Hug",     val:"( ˘▽˘)っ"},
+    {label:"ᵒᵏ ok",             val:"ᵒᵏ"},
+    {label:"ツ Smile",           val:"ツ"},
+  ],
+  arrows:[
+    {label:"→ Right",    val:"→"},
+    {label:"← Left",     val:"←"},
+    {label:"↑ Up",       val:"↑"},
+    {label:"↓ Down",     val:"↓"},
+    {label:"➤ Filled",   val:"➤"},
+    {label:"» Double",   val:"»"},
+    {label:"« D-Left",   val:"«"},
+    {label:"⟩ Angle",    val:"⟩"},
+    {label:"⟨ A-Left",   val:"⟨"},
+    {label:"〉CJK R",    val:"〉"},
+    {label:"〈 CJK L",   val:"〈"},
+    {label:"❯ Heavy R",  val:"❯"},
+    {label:"❮ Heavy L",  val:"❮"},
+    {label:"▶ Play",     val:"▶"},
+    {label:"◀ Back",     val:"◀"},
+    {label:"⬆ Fat Up",   val:"⬆"},
+    {label:"⬇ Fat Down", val:"⬇"},
+  ],
+};
+
+function buildDecoSection(id, items){
+  const el = document.getElementById(id);
+  items.forEach(d=>{
+    const b = document.createElement('button');
+    b.className='deco-btn';
+    b.innerHTML=`${d.label}`;
+    b.title=`Insert: ${d.val}`;
+    b.onclick=()=>insertTag(d.val);
+    el.appendChild(b);
+  });
+}
+buildDecoSection('decoFlowers', DECO.flowers);
+buildDecoSection('decoBoxes',   DECO.boxes);
+buildDecoSection('decoLines',   DECO.lines);
+buildDecoSection('decoStars',   DECO.stars);
+buildDecoSection('decoSpecial', DECO.special);
+buildDecoSection('decoArrows',  DECO.arrows);
+
+// ═══════════════════════════════════════════
+//  BIO EDITOR HELPERS
+// ═══════════════════════════════════════════
+function insertTag(tag){
+  const ta = document.getElementById('bioInput');
+  const s  = ta.selectionStart;
+  const e  = ta.selectionEnd;
+  ta.value = ta.value.slice(0,s) + tag + ta.value.slice(e);
+  const pos = s + tag.length;
+  ta.setSelectionRange(pos,pos);
+  ta.focus();
+  updatePreview();
+  updateStats();
+}
+
+function clearBio(){
+  document.getElementById('bioInput').value='';
+  updatePreview();
+  updateStats();
+}
+
+function updateStats(){
+  const v = document.getElementById('bioInput').value;
+  document.getElementById('charCount').textContent = v.length;
+  document.getElementById('lineCount').textContent = v.split('\n').length;
+}
+
+// ═══════════════════════════════════════════
+//  LIVE PREVIEW PARSER
+// ═══════════════════════════════════════════
+function parseBio(raw){
+  if(!raw.trim()) return '<span style="color:#4a5568;font-style:italic">Your bio will appear here...</span>';
+  const lines = raw.split('\n');
+  return lines.map(line=>{
+    let html = '';
+    let i = 0;
+    let centered = false;
+    let bold = false;
+    let color = '#FFFFFF';
+
+    while(i < line.length){
+      if(line[i]==='['){
+        const close = line.indexOf(']',i);
+        if(close!==-1){
+          const tag = line.slice(i+1,close).toUpperCase();
+          if(tag==='C'){ centered=true; i=close+1; continue; }
+          if(tag==='B'){ bold=true; i=close+1; continue; }
+          if(/^[0-9A-F]{6}$/.test(tag)){ color='#'+tag; i=close+1; continue; }
+        }
+      }
+      let ch = line[i];
+      html += `<span style="color:${color};font-weight:${bold?'bold':'normal'}">${ch.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>`;
+      i++;
+    }
+    return `<div style="text-align:${centered?'center':'left'};min-height:20px">${html||'&nbsp;'}</div>`;
+  }).join('');
+}
+
+function updatePreview(){
+  const bio = document.getElementById('bioInput').value;
+  document.getElementById('livePreview').innerHTML = parseBio(bio);
+}
+
+// ═══════════════════════════════════════════
+//  AUTH TABS
+// ═══════════════════════════════════════════
+function switchAuth(idx){
+  document.querySelectorAll('.auth-tab').forEach((t,i)=>{
+    t.classList.toggle('active', i===idx);
+  });
+  document.querySelectorAll('.auth-panel').forEach((p,i)=>{
+    p.classList.toggle('active', i===idx);
+  });
+}
+
+function togglePwd(id, btn){
+  const el = document.getElementById(id);
+  if(el.type==='password'){el.type='text'; btn.textContent='🙈';}
+  else{el.type='password'; btn.textContent='👁';}
+}
+
+// ═══════════════════════════════════════════
+//  STATUS HELPER
+// ═══════════════════════════════════════════
+function setStatus(id, msg, type){
+  const el = document.getElementById(id);
+  el.style.display='block';
+  el.className='status-box '+type;
+  el.innerHTML = msg;
+}
+function setLoading(btnId, spinId, loading){
+  const btn = document.getElementById(btnId);
+  const spin = document.getElementById(spinId);
+  btn.disabled = loading;
+  spin.style.display = loading ? 'block' : 'none';
+}
+
+// ═══════════════════════════════════════════
+//  API CALLS
+// ═══════════════════════════════════════════
+function getBio(){
+  return document.getElementById('bioInput').value.trim();
+}
+
+async function updateBioJWT(){
+  const token = document.getElementById('jwt_token').value.trim();
+  const bio   = getBio();
+  if(!token) return setStatus('statusJWT','⚠ Please enter your JWT token','error');
+  if(!bio)   return setStatus('statusJWT','⚠ Please write your bio first','error');
+  setLoading('btnJWT','spinJWT',true);
+  try{
+    const r = await fetch('/api/update-bio/jwt',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({jwt_token:token,bio})
+    });
+    const d = await r.json();
+    setStatus('statusJWT', d.ok ? '✅ '+d.msg : '❌ '+d.msg, d.ok?'success':'error');
+  }catch(e){setStatus('statusJWT','❌ Network error: '+e.message,'error');}
+  setLoading('btnJWT','spinJWT',false);
+}
+
+async function getJWTFromUID(){
+  const uid = document.getElementById('uid_input').value.trim();
+  const pwd = document.getElementById('pwd_input').value.trim();
+  if(!uid||!pwd) return setStatus('statusUID','⚠ Enter UID and Password','error');
+  document.getElementById('btnGetJWT').textContent='⏳ Getting token...';
+  try{
+    const r = await fetch('/api/get-jwt',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({uid,password:pwd})
+    });
+    const d = await r.json();
+    if(d.ok){
+      const box = document.getElementById('resultJWT');
+      document.getElementById('resultJWTText').textContent = d.token;
+      box.style.display='block';
+      setStatus('statusUID','✅ JWT token retrieved! Now click Update Bio.','success');
+      // Auto-fill JWT field
+      document.getElementById('jwt_token').value = d.token;
+    } else {
+      setStatus('statusUID','❌ '+d.msg,'error');
+    }
+  }catch(e){setStatus('statusUID','❌ '+e.message,'error');}
+  document.getElementById('btnGetJWT').textContent='⚡ GET JWT TOKEN FIRST';
+}
+
+async function updateBioUID(){
+  const uid = document.getElementById('uid_input').value.trim();
+  const pwd = document.getElementById('pwd_input').value.trim();
+  const bio = getBio();
+  if(!uid||!pwd) return setStatus('statusUID','⚠ Enter UID and Password','error');
+  if(!bio)       return setStatus('statusUID','⚠ Please write your bio first','error');
+  setLoading('btnUID','spinUID',true);
+  try{
+    // First get JWT
+    const r1 = await fetch('/api/get-jwt',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({uid,password:pwd})
+    });
+    const d1 = await r1.json();
+    if(!d1.ok){ setStatus('statusUID','❌ '+d1.msg,'error'); setLoading('btnUID','spinUID',false); return; }
+    // Then update bio
+    const r2 = await fetch('/api/update-bio/jwt',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({jwt_token:d1.token,bio})
+    });
+    const d2 = await r2.json();
+    setStatus('statusUID', d2.ok?'✅ '+d2.msg:'❌ '+d2.msg, d2.ok?'success':'error');
+  }catch(e){setStatus('statusUID','❌ '+e.message,'error');}
+  setLoading('btnUID','spinUID',false);
+}
+
+async function updateBioAccess(){
+  const token = document.getElementById('access_token').value.trim();
+  const bio   = getBio();
+  if(!token) return setStatus('statusAccess','⚠ Enter Access token','error');
+  if(!bio)   return setStatus('statusAccess','⚠ Write your bio first','error');
+  setLoading('btnAccess','spinAccess',true);
+  try{
+    const r = await fetch('/api/update-bio/access',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({access_token:token,bio})
+    });
+    const d = await r.json();
+    setStatus('statusAccess', d.ok?'✅ '+d.msg:'❌ '+d.msg, d.ok?'success':'error');
+  }catch(e){setStatus('statusAccess','❌ '+e.message,'error');}
+  setLoading('btnAccess','spinAccess',false);
+}
+
+async function convertEAT(){
+  const eat = document.getElementById('eat_token').value.trim();
+  if(!eat) return setStatus('statusEAT','⚠ Enter EAT token','error');
+  document.getElementById('btnConvert').textContent='⏳ Converting...';
+  try{
+    const r = await fetch('/api/eat-to-access',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({eat_token:eat})
+    });
+    const d = await r.json();
+    if(d.ok){
+      const box = document.getElementById('resultAccess');
+      document.getElementById('resultAccessText').textContent = d.access_token;
+      box.style.display='block';
+      document.getElementById('access_token').value = d.access_token;
+      setStatus('statusEAT','✅ Access token retrieved!','success');
+    } else {
+      setStatus('statusEAT','❌ '+d.msg,'error');
+    }
+  }catch(e){setStatus('statusEAT','❌ '+e.message,'error');}
+  document.getElementById('btnConvert').textContent='🔄 CONVERT EAT → ACCESS TOKEN';
+}
+
+async function updateBioEAT(){
+  const eat = document.getElementById('eat_token').value.trim();
+  const bio = getBio();
+  if(!eat) return setStatus('statusEAT','⚠ Enter EAT token','error');
+  if(!bio) return setStatus('statusEAT','⚠ Write your bio first','error');
+  setLoading('btnEAT','spinEAT',true);
+  try{
+    const r1 = await fetch('/api/eat-to-access',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({eat_token:eat})
+    });
+    const d1 = await r1.json();
+    if(!d1.ok){ setStatus('statusEAT','❌ '+d1.msg,'error'); setLoading('btnEAT','spinEAT',false); return; }
+    const r2 = await fetch('/api/update-bio/access',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({access_token:d1.access_token,bio})
+    });
+    const d2 = await r2.json();
+    setStatus('statusEAT', d2.ok?'✅ '+d2.msg:'❌ '+d2.msg, d2.ok?'success':'error');
+  }catch(e){setStatus('statusEAT','❌ '+e.message,'error');}
+  setLoading('btnEAT','spinEAT',false);
+}
+
+function copyToken(boxId){
+  const text = document.getElementById(boxId+'Text').textContent;
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn = document.querySelector(`#${boxId} .copy-btn`);
+    btn.textContent='✓ COPIED';
+    setTimeout(()=>btn.textContent='COPY', 2000);
+  });
+}
+
+// Init
+updatePreview();
+updateStats();
+</script>
+</body>
+</html>
